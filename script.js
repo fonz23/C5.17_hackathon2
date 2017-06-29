@@ -1,27 +1,34 @@
 /**
  * Created by sunoobertsch on 6/28/17.
  */
-function clickHandler(btn){
-    var genreId = parseInt($(btn).attr('id'));
-    var tempUrl = 'https://api.themoviedb.org/3/genre/' + genreId + '/movies?api_key=b09e8ebef5593dfec03034ec1ab31d35&language=en-US&include_adult=false&sort_by=created_at.desc';
-    console.log(genreId);
-    $.ajax({
-        dataType: 'json',
-        method: 'GET',
-        url: tempUrl,
-        success: function(result) {
-            var random = Math.floor((Math.random() * 20) + 1);
-            var movieTitle = result.results[random].original_title;
-            var vote_average = result.results[random].vote_average;
-            var release = result.results[random].release_date;
-            console.log('Click succeeded');
-            youtubeApi(movieTitle, vote_average, release);
+var flag = 0;
+var genreId;
+var button;
+function clickHandler(btn){;
+    if (flag === 0) {
+        flag+=1;
+        button = btn;
+        genreId = parseInt($(btn).attr('id'));
+        var tempUrl = 'https://api.themoviedb.org/3/genre/' + genreId + '/movies?api_key=b09e8ebef5593dfec03034ec1ab31d35&language=en-US&include_adult=false&sort_by=created_at.desc';
+        console.log(genreId);
+        $.ajax({
+            dataType: 'json',
+            method: 'GET',
+            url: tempUrl,
+            success: function (result) {
+                var random = Math.floor((Math.random() * 20) + 1);
+                var movieTitle = result.results[random].original_title;
+                var vote_average = result.results[random].vote_average;
+                var release = result.results[random].release_date;
+                console.log('Click succeeded');
+                youtubeApi(movieTitle, vote_average, release);
 
-        },
-        error: function(error) {
-            console.log("There was an error for retrieval");
-        }
-    });
+            },
+            error: function (error) {
+                console.log("There was an error for retrieval");
+            }
+        });
+    }
 }
 function youtubeApi(movie, average, release) {
     var movieTitle = movie;
@@ -48,11 +55,12 @@ function youtubeApi(movie, average, release) {
             var new_div = $('<div>').attr('id', 'new_div');
             var vote = $('<h5>').text('IMDB Rating: ' + vote_average + ' / 10');
             $('#whole_container').replaceWith(new_div);
+            $('#new_div').replaceWith(new_div);
             $(new_div).append(title);
             $(new_div).append(embed);
+            $(new_div).append(container);
             $('#description_container').append(vote);
             $('#description_container').append(date);
-            $(new_div).append(container);
             itunesApi(movieTitle);
         },
         error: function(err) {
@@ -64,31 +72,46 @@ function appendDescription(description){
     console.log('Description appended');
     $('#description').text(description);
 }
-function itunesApi(title){
+function itunesApi(title) {
     var url2 = 'https://itunes.apple.com/search?term=';
-    var title = 'The Dark Knight';
     var arr = title.split(' ');
-    var url=arr[0];
-    for(var i = 1; i < arr.length; i++) {
+    var url = arr[0];
+    for (var i = 1; i < arr.length; i++) {
         url2 = url2 + url + '+' + arr[i];
     }
-    console.log(url2)
-    $.ajax ({
-    dataType: 'json',
-    method: 'GET',
-    data: url2,
-    url: 'https://itunes.apple.com/search?term=' + title + '+movie',
-    success: function(result){
-        console.log("ITUNE'S WORKS");
-        var price = result.results[0].trackPrice;
-        var longDescription = result.results[0].longDescription;
-        var descript = $('<h5>').text(longDescription);
-        var priceDisplay = $('<h5>').text('Price: ' + price);
-        $('#description_container').append(priceDisplay);
-        $('#description_container').append(descript);
-    },
-    error: function(){
-        console.log("ITUNE'S ERROR")
-    }
-})
+    console.log(url2);
+    $.ajax({
+        dataType: 'json',
+        method: 'GET',
+        data: url2,
+        url: 'https://itunes.apple.com/search?term=' + title + '+movie',
+        success: function(result){
+            console.log("ITUNE'S WORKS");
+            var price = result.results[0].collectionPrice;
+            var longDescription = result.results[0].longDescription;
+            var descript = $('<h5>').attr('id','longDescription').text(longDescription);
+            var rating = result.results[0].contentAdvisoryRating;
+            var ratingDisplay = $('<h5>').text('Parental Advisory: ' + rating);
+            var priceDisplay = $('<h5>').text("Available on Itune's $" + price);
+            var bigBtn = $('<button>').attr('id','bigButton').on('click', redoSearchWithinGenre).text('SOMETHING ELSE!');
+            var bigBtn1 = $('<button>').attr('id','bigButton1').on('click', reloadHome).text('GO BACK!');
+
+            $('#description_container').append(priceDisplay);
+            $('#description_container').append(descript);
+            $('#description_container').append(bigBtn1);
+            $('#description_container').append(ratingDisplay);
+            $('#description_container').append(bigBtn);
+
+        },
+        error: function () {
+            console.log("ITUNE'S ERROR")
+        }
+    })
+};
+function redoSearchWithinGenre(){
+    flag = 0;
+    clickHandler(button);
+}
+function reloadHome(){
+    window.location.reload();
 }
