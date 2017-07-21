@@ -1,0 +1,109 @@
+body{	
+	background-image:url('https://images4.alphacoders.com/113/thumb-1920-113576.jpg');
+	background-repeat:repeat;
+	background-size:cover;
+}
+#new_div{
+	text-align:center;
+
+}
+#movie {
+    width: 49vw;
+    height: 45vh;
+    color:white;
+}
+#description_container{
+	font-family: 'Righteous', sans-serif;
+	font-size: 2vh;
+	color:white;
+	margin: 3vh;
+}
+
+#title{
+	font-family: 'Righteous', sans-serif;
+	font-size: 6vh;
+	margin:0.5vh 0 3vh 0;
+	color:white;
+}
+#fptitle{
+	font-family: 'Righteous', sans-serif;
+	font-size: 11vh;
+	margin:0.5vh 0 3vh 0;
+	color:white;
+	text-align:center;
+	margin-top: 8vh;
+}
+
+h5{
+	display:inline-block;
+	margin:1vh 3vw 2vh 3vw;
+	color:white;
+}
+
+#longDescription{
+	margin: 1vh 25vw 2vh 25vw;
+	font-size:2vh;
+}
+
+#description_container button{
+	display: inline-block;
+    margin: 0 auto;
+    font-size: 1.7vh;
+    width: 10vw;
+    height: 3vh;
+    border-radius: 5vh;
+    background-color: white;
+    color: black;
+    font-family: 'Righteous', sans-serif;
+    box-shadow: 1px 1px 64px 1px rgba(37,219,219,1);
+    animation:fadein 0.5s;
+
+}
+#description_container button:hover{
+	box-shadow: 1px 1px 64px 1px rgba(224,25,224,1);
+	
+}
+
+main button{
+		display: inline-block;
+    margin: 0 auto;
+    font-size: 1.7vh;
+    width: 10vw;
+    height: 6vh;
+    border-radius: 5vh;
+    background-color: white;
+    color: black;
+    font-family: 'Righteous', sans-serif;
+ 	margin:1vh 1vw 1vh 1vw;
+    animation:fadein 0.5s;
+    box-shadow: 1px 1px 64px 1px darkgrey;
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;  
+    }
+}
+
+embed{
+	
+	animation:fadein 0.5s;
+	box-shadow: 1px 1px 69px 12px grey;
+
+}
+
+embed:hover{
+	box-shadow: 1px 1px 69px 12px	;
+	animation:fadein 0.5s infinte;
+}
+
+.fpbtn{
+	text-align:center;
+}
+
+.genre_buttons{
+	margin-top: 11vh;
+}
