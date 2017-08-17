@@ -1,6 +1,7 @@
 var flag= 0;
 var genreId;
 var button;
+
 function clickHandler(btn){
     if(flag===0){
     flag+=1;
@@ -148,10 +149,12 @@ function itunesApi(title){
     }
 });
 }
+
 function redoSearchWithinGenre(){
     flag = 0;
     clickHandler(button);
 }
+
 function reloadHome(){
     window.location.reload();
 }
