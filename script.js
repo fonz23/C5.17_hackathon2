@@ -1,4 +1,4 @@
-var flag= 0;
+var flag = 0;
 var genreId;
 var button;
 
@@ -9,15 +9,12 @@ function clickHandler(btn){
     genreId = parseInt($(btn).attr('id'));
     var tempUrl = 'https://api.themoviedb.org/3/genre/' + genreId + '/movies?api_key=b09e8ebef5593dfec03034ec1ab31d35&language=en-US&include_adult=false&sort_by=created_at.desc';
     $('body').css('background-image','url("https://images4.alphacoders.com/113/thumb-1920-113576.jpg")');
-
-    console.log(genreId);
+    
     $.ajax({
         dataType: 'json',
         method: 'GET',
         url: tempUrl,
         success: function(result) {
-
-
             var random = Math.floor((Math.random() * 20) + 1);
             var movieTitle = result.results[random].original_title;
             var vote_average = result.results[random].vote_average;
@@ -127,7 +124,6 @@ function itunesApi(title){
     data: url2,
     url: 'https://itunes.apple.com/search?term=' + title + '+movie',
     success: function(result){
-        console.log("ITUNE'S WORKS");
         var price = result.results[0].trackPrice;
         var longDescription = result.results[0].longDescription;
         var descript = $('<h5>').attr('id','longDescription').text(longDescription);
