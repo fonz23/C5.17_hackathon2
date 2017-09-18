@@ -29,44 +29,44 @@ function clickHandler(btn){
     }
 }
 
-function showGenre(img) {
-    var id = $(img).attr('id');
-    switch (id) {
-        case '28':
-            $('body').css("background-image", 'url("Assets/action.jpg")');
-            break;
-        case '35':
-            $('body').css('background-image', 'url("Assets/comedy.png")');
-            break;
-        case '27':
-            $('body').css('background-image', 'url("Assets/horror.jpg")');
-            break;
-        case '53':
-            $('body').css('background-image', 'url("Assets/thriller.png")');
-            break;
-        case '878':
-            $('body').css('background-image', 'url("Assets/Scifi.jpg")');
-            break;
-        case '16':
-            $('body').css('background-image', 'url("Assets/animation.jpg")');
-            break;
-        case '37':
-            $('body').css('background-image', 'url("Assets/Western.jpg")');
-            break;
-        case '10751':
-            $('body').css('background-image', 'url("Assets/family.jpg")');
-            break;
-        case '9648':
-            $('body').css('background-image', 'url("Assets/msty.jpg")');
-            break;
-        case '10749':
-            $('body').css('background-image', 'url("Assets/romance.jpg")');
-            break;
-        case '18':
-            $('body').css('background-image', 'url("Assets/darama.jpg")');
-            break;
-    }
-}
+// function showGenre(img) {
+//     var id = $(img).attr('id');
+//     switch (id) {
+//         case '28':
+//             $('body').css("background-image", 'url("Assets/action.jpg")');
+//             break;
+//         case '35':
+//             $('body').css('background-image', 'url("Assets/comedy.png")');
+//             break;
+//         case '27':
+//             $('body').css('background-image', 'url("Assets/horror.jpg")');
+//             break;
+//         case '53':
+//             $('body').css('background-image', 'url("Assets/thriller.png")');
+//             break;
+//         case '878':
+//             $('body').css('background-image', 'url("Assets/Scifi.jpg")');
+//             break;
+//         case '16':
+//             $('body').css('background-image', 'url("Assets/animation.jpg")');
+//             break;
+//         case '37':
+//             $('body').css('background-image', 'url("Assets/Western.jpg")');
+//             break;
+//         case '10751':
+//             $('body').css('background-image', 'url("Assets/family.jpg")');
+//             break;
+//         case '9648':
+//             $('body').css('background-image', 'url("Assets/msty.jpg")');
+//             break;
+//         case '10749':
+//             $('body').css('background-image', 'url("Assets/romance.jpg")');
+//             break;
+//         case '18':
+//             $('body').css('background-image', 'url("Assets/darama.jpg")');
+//             break;
+//     }
+// }
 
 function hideVideo() {
     $('body').css('background-image', '');
@@ -141,7 +141,7 @@ function itunesApi(title){
         
     },
     error: function(){
-        console.log("ITUNE'S ERROR");
+        console.log("ITUNE'S API is NOT working here and now");
     }
 });
 }
